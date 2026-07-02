@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as MenuRouteImport } from './routes/menu'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as CountryStoreRouteImport } from './routes/country-store'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -32,6 +33,11 @@ const ReviewsRoute = ReviewsRouteImport.update({
 const MenuRoute = MenuRouteImport.update({
   id: '/menu',
   path: '/menu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EventsRoute = EventsRouteImport.update({
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/country-store': typeof CountryStoreRoute
   '/events': typeof EventsRoute
+  '/faq': typeof FaqRoute
   '/menu': typeof MenuRoute
   '/reviews': typeof ReviewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/country-store': typeof CountryStoreRoute
   '/events': typeof EventsRoute
+  '/faq': typeof FaqRoute
   '/menu': typeof MenuRoute
   '/reviews': typeof ReviewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/country-store': typeof CountryStoreRoute
   '/events': typeof EventsRoute
+  '/faq': typeof FaqRoute
   '/menu': typeof MenuRoute
   '/reviews': typeof ReviewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -108,6 +117,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/country-store'
     | '/events'
+    | '/faq'
     | '/menu'
     | '/reviews'
     | '/sitemap.xml'
@@ -119,6 +129,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/country-store'
     | '/events'
+    | '/faq'
     | '/menu'
     | '/reviews'
     | '/sitemap.xml'
@@ -130,6 +141,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/country-store'
     | '/events'
+    | '/faq'
     | '/menu'
     | '/reviews'
     | '/sitemap.xml'
@@ -142,6 +154,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CountryStoreRoute: typeof CountryStoreRoute
   EventsRoute: typeof EventsRoute
+  FaqRoute: typeof FaqRoute
   MenuRoute: typeof MenuRoute
   ReviewsRoute: typeof ReviewsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -168,6 +181,13 @@ declare module '@tanstack/react-router' {
       path: '/menu'
       fullPath: '/menu'
       preLoaderRoute: typeof MenuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/events': {
@@ -222,6 +242,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CountryStoreRoute: CountryStoreRoute,
   EventsRoute: EventsRoute,
+  FaqRoute: FaqRoute,
   MenuRoute: MenuRoute,
   ReviewsRoute: ReviewsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

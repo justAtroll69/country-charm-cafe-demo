@@ -31,6 +31,7 @@ export function SiteFooter() {
             <li><Link to="/country-store" className="hover:text-honey">Country Store</Link></li>
             <li><Link to="/events" className="hover:text-honey">Events</Link></li>
             <li><Link to="/about" className="hover:text-honey">About Us</Link></li>
+            <li><Link to="/faq" className="hover:text-honey">FAQ</Link></li>
           </ul>
         </div>
         <div>

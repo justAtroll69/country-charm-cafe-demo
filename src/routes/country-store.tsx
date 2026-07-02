@@ -1,15 +1,22 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import storeImg from "@/assets/store.jpg";
 
 export const Route = createFileRoute("/country-store")({
   head: () => ({
     meta: [
-      { title: "Country Store — Lutz Country Store & Café" },
-      { name: "description", content: "Old-fashioned candy, local honey, gifts, wind chimes, vintage finds and seasonal merchandise." },
-      { property: "og:title", content: "The Country Store" },
-      { property: "og:description", content: "A little something for everyone." },
+      { title: "The Country Store in Lutz, FL — Candy, Honey, Gifts & Vintage Finds" },
+      { name: "description", content: "Shop old-fashioned candy, local honey, wind chimes, hand-poured gifts and vintage treasures at the Lutz Country Store — beside the café at 19015 US-41." },
+      { name: "keywords", content: "country store Lutz FL, old fashioned candy Lutz, local honey Lutz, gift shop Lutz, vintage store Lutz" },
+      { property: "og:title", content: "The Country Store — Lutz, FL" },
+      { property: "og:description", content: "A little something for everyone: candy, honey, gifts, wind chimes and vintage finds." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/country-store" },
       { property: "og:image", content: storeImg },
+      { name: "twitter:title", content: "The Country Store — Lutz Country Store & Café" },
+      { name: "twitter:description", content: "Old-fashioned candy, local honey, gifts and vintage finds in Lutz, FL." },
+      { name: "twitter:image", content: storeImg },
     ],
+    links: [{ rel: "canonical", href: "/country-store" }],
   }),
   component: StorePage,
 });
@@ -27,22 +34,25 @@ function StorePage() {
   return (
     <div>
       <section className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-2 lg:items-center lg:px-8">
-        <img src={storeImg} alt="Country store interior" className="rounded-2xl shadow-warm" />
+        <img src={storeImg} alt="Interior of the Lutz country store with wooden shelves of candy, honey and vintage gifts" width={1600} height={1024} className="rounded-2xl shadow-warm" />
         <div>
-          <div className="eyebrow">The Country Store</div>
-          <h1 className="mt-3 font-display text-4xl sm:text-6xl">A little something for everyone.</h1>
+          <p className="eyebrow">The Country Store</p>
+          <h1 className="mt-3 font-display text-4xl sm:text-6xl">A little something for everyone in Lutz.</h1>
           <p className="mt-5 text-foreground/75">
             Tucked beside the café, our country store is part candy shop, part gift shop, part treasure hunt. Wander our wooden shelves and bring a piece of Lutz home with you.
           </p>
+          <Link to="/contact" aria-label="Visit the country store — see hours and directions" className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-sage-dark">
+            Visit us in Lutz
+          </Link>
         </div>
       </section>
-      <section className="mx-auto max-w-7xl px-5 pb-24 lg:px-8">
+      <section className="mx-auto max-w-7xl px-5 pb-24 lg:px-8" aria-label="Store categories">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((c) => (
-            <div key={c.title} className="rounded-2xl border border-border bg-card p-6 shadow-soft">
-              <h3 className="font-display text-xl text-primary">{c.title}</h3>
+            <article key={c.title} className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+              <h2 className="font-display text-xl text-primary">{c.title}</h2>
               <p className="mt-2 text-sm text-foreground/75">{c.body}</p>
-            </div>
+            </article>
           ))}
         </div>
       </section>

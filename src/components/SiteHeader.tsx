@@ -10,6 +10,7 @@ const links = [
   { to: "/events", label: "Events" },
   { to: "/about", label: "About" },
   { to: "/reviews", label: "Reviews" },
+  { to: "/faq", label: "FAQ" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -18,14 +19,14 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
       <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 lg:px-8">
-        <Link to="/" className="flex min-w-0 items-center gap-3">
-          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground font-display text-lg">L</span>
+        <Link to="/" aria-label="Lutz Country Store & Café — home" className="flex min-w-0 items-center gap-3">
+          <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground font-display text-lg">L</span>
           <span className="min-w-0">
             <span className="block truncate font-display text-lg leading-none text-foreground sm:text-xl">Lutz Country Store</span>
-            <span className="block text-[11px] uppercase tracking-[0.22em] text-sage-dark">& Café</span>
+            <span className="block text-[11px] uppercase tracking-[0.22em] text-sage-dark">&amp; Café</span>
           </span>
         </Link>
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
           {links.map((l) => (
             <Link
               key={l.to}
@@ -36,21 +37,22 @@ export function SiteHeader() {
               {l.label}
             </Link>
           ))}
-          <a href="https://www.toasttab.com/local/order/lutz-country-store-19015-us-41" target="_blank" rel="noopener noreferrer" className="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground shadow-soft transition hover:bg-sage-dark">
+          <a href="https://www.toasttab.com/local/order/lutz-country-store-19015-us-41" target="_blank" rel="noopener noreferrer" aria-label="Order Lutz Country Store & Café online" className="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground shadow-soft transition hover:bg-sage-dark">
             Order Online
           </a>
         </nav>
         <button
           onClick={() => setOpen((o) => !o)}
           className="rounded-md border border-border p-2 lg:hidden"
-          aria-label="Toggle menu"
+          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={open}
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {open ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
         </button>
       </div>
       {open && (
         <div className="border-t border-border/60 bg-background lg:hidden">
-          <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-3">
+          <nav aria-label="Mobile" className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-3">
             {links.map((l) => (
               <Link
                 key={l.to}
